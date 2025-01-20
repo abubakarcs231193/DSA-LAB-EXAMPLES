@@ -1,0 +1,49 @@
+q1
+public class SwapExample {
+    public static void main(String[] args) {
+        int a = 5, b = 10;
+        a = a + b;
+        b = a - b;
+        a = a - b;
+        System.out.println("a: " + a + ", b: " + b);
+    }
+}
+
+q2
+import java.util.Scanner;
+
+public class FloatComparison {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double num1 = sc.nextDouble();
+        double num2 = sc.nextDouble();
+        if (Math.abs(num1 - num2) < 0.001) {
+            System.out.println("The numbers are the same up to three decimal places.");
+        } else {
+            System.out.println("The numbers are not the same.");
+        }
+    }
+}
+
+q3
+import java.util.Scanner;
+
+public class OrderCheck {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int num1 = sc.nextInt();
+        int num2 = sc.nextInt();
+        int num3 = sc.nextInt();
+        checkOrder(num1, num2, num3);
+    }
+
+    public static void checkOrder(int num1, int num2, int num3) {
+        if (num1 < num2 && num2 < num3) {
+            System.out.println("increasing");
+        } else if (num1 > num2 && num2 > num3) {
+            System.out.println("decreasing");
+        } else {
+            System.out.println("Neither increasing nor decreasing order");
+        }
+    }
+}
