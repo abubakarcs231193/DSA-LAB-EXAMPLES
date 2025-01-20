@@ -1,0 +1,134 @@
+class SinglyLinkedList {
+    Node head;
+
+    // Node class to represent each element in the list
+    static class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    // 1. Create and initialize an empty LinkedList
+    public SinglyLinkedList() {
+        head = null;
+    }
+
+    // 2. Traversing the LinkedList (Printing the list)
+    public void traverse() {
+        Node current = head;
+        if (current == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+        while (current != null) {
+            System.out.print(current.data + " -> ");
+            current = current.next;
+        }
+        System.out.println("null");
+    }
+
+    // 3. Insertion into Singly LinkedList
+    
+    // Insert at the beginning
+    public void insertAtBeginning(int data) {
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head = newNode;
+    }
+
+    // Insert at a specified position
+    public void insertAtPosition(int data, int position) {
+        if (position < 1) {
+            System.out.println("Invalid position.");
+            return;
+        }
+        Node newNode = new Node(data);
+        if (position == 1) {
+            newNode.next = head;
+            head = newNode;
+            return;
+        }
+        Node current = head;
+        int currentPosition = 1;
+        while (current != null && currentPosition < position - 1) {
+            current = current.next;
+            currentPosition++;
+        }
+        if (current == null) {
+            System.out.println("Position out of range.");
+        } else {
+            newNode.next = current.next;
+            current.next = newNode;
+        }
+    }
+
+    // 4. Deletion from Singly LinkedList
+
+    // Delete the node following a given node
+    public void deleteAfterNode(int givenData) {
+        Node current = head;
+        while (current != null && current.next != null) {
+            if (current.data == givenData) {
+                current.next = current.next.next;
+                return;
+            }
+            current = current.next;
+        }
+        System.out.println("Node with given data not found or no node to delete after.");
+    }
+
+    // Delete the node with a given item of information
+    public void deleteNodeByData(int data) {
+        if (head == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+        if (head.data == data) {
+            head = head.next;
+            return;
+        }
+        Node current = head;
+        while (current.next != null) {
+            if (current.next.data == data) {
+                current.next = current.next.next;
+                return;
+            }
+            current = current.next;
+        }
+        System.out.println("Node with data " + data + " not found.");
+    }
+
+    public static void main(String[] args) {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        // Insert elements into the list
+        list.insertAtBeginning(10);
+        list.insertAtBeginning(20);
+        list.insertAtBeginning(30);
+        list.insertAtBeginning(40);
+        System.out.println("List after insertion at the beginning:");
+        list.traverse();
+
+        // Insert an element at a specified position
+        list.insertAtPosition(25, 3);
+        System.out.println("List after insertion at position 3:");
+        list.traverse();
+
+        // Deleting a node after a given node
+        list.deleteAfterNode(20); // Deletes the node following the node with data 20
+        System.out.println("List after deleting node following node with data 20:");
+        list.traverse();
+
+        // Deleting a node by its data
+        list.deleteNodeByData(30); // Deletes node with data 30
+        System.out.println("List after deleting node with data 30:");
+        list.traverse();
+
+        // Deleting a node with a non-existent data value
+        list.deleteNodeByData(100); // Node with data 100 does not exist
+    }
+}
