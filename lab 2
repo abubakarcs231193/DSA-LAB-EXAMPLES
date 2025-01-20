@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class MatrixOperations {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Q1: Find the transpose of a 2D matrix
+        System.out.print("Enter the number of rows: ");
+        int rows = sc.nextInt();
+        System.out.print("Enter the number of columns: ");
+        int cols = sc.nextInt();
+
+        int[][] matrix = new int[rows][cols];
+        int[][] transpose = new int[cols][rows];
+
+        System.out.println("Enter the elements of the matrix:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                matrix[i][j] = sc.nextInt();
+            }
+        }
+
+        // Transposing the matrix
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                transpose[j][i] = matrix[i][j];
+            }
+        }
+
+        System.out.println("Transpose of the matrix:");
+        for (int i = 0; i < cols; i++) {
+            for (int j = 0; j < rows; j++) {
+                System.out.print(transpose[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        // Q2: Left and Right Diagonal Sum for Square Matrix
+        System.out.print("Enter the size of the square matrix for diagonal sum calculation: ");
+        int n = sc.nextInt();
+
+        int[][] squareMatrix = new int[n][n];
+        System.out.println("Enter the elements of the square matrix:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                squareMatrix[i][j] = sc.nextInt();
+            }
+        }
+
+        System.out.println("Left diagonal sum: " + leftDiagonalSum(squareMatrix, n));
+        System.out.println("Right diagonal sum: " + rightDiagonalSum(squareMatrix, n));
+    }
+
+    // Method to calculate left diagonal sum
+    public static int leftDiagonalSum(int[][] matrix, int n) {
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += matrix[i][i]; // Left diagonal (i == j)
+        }
+        return sum;
+    }
+
+    // Method to calculate right diagonal sum
+    public static int rightDiagonalSum(int[][] matrix, int n) {
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += matrix[i][n - 1 - i]; // Right diagonal (i + j = n - 1)
+        }
+        return sum;
+    }
+}
